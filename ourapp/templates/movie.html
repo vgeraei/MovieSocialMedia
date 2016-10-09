@@ -1,0 +1,152 @@
+{%  extends "base.html" %}
+
+{% load static %}
+
+{%  block head %}
+<link href="{% static "css/custom-movie-profile.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block sidebar %}
+<div class="well">
+	<h4>Details</h4>
+	<div class="movie-profile-sidebar ">
+	<img src="{{m.poster.url}}" class="img-thumbnail">
+	</div>
+	<div class="imdb-link">
+	<a href="{{m.link}}"><span>Watch on <img src="{% static "img/icons/imdb.png" %}"></span></a>
+	</div>
+<!-- /.input-group -->
+	<table class="table">
+		<tbody>
+			<tr>
+			<th>Directed by</th>
+			<td>{{m.director}}</td>
+			</tr>
+
+			<tr>
+			<th>Produced by</th>
+			<td>
+			{{m.producer}}
+			</td>
+			</tr>
+			<!--
+			<tr>
+			<th>Story by</th>
+			<td>
+			Charlie Kaufman
+			<br>
+			Michel Gondry
+			<br>
+			Pierre Bismuth
+			</td>
+			</tr>
+		-->
+			<tr>
+			<th>Starring</th>
+			<td>
+			Jim Carrey
+			<br>
+			Kate Winslet
+			<br>
+			Kirsten Dunst
+			<br>
+			Mark Ruffalo
+			<br>
+			Elijah Wood
+			<br>
+			Tom Wilkinson
+			</td>
+			</tr>
+
+
+			<tr>
+			<th>Music by</th>
+			<td>{{m.music}}</td>
+			</tr>
+			<tr>
+			<th>Release date</th>
+			<td>{{m.rel_date}}</td>
+			</tr>
+
+			<tr>
+			<th>Running time</th>
+			<td>{{m.run_time}} minutes</td>
+			</tr>
+		</tbody>
+	</table>         
+</div>
+{% endblock %}
+
+{% block content %}
+    <h1 class="page-header">
+                    {{m.name}}
+                     <small>{{m.rating}}</small>
+                </h1>
+				<div class="rating-div">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <input id="input-2a" class="rating"  data-min="0" data-max="10" data-step="1" data-stars=10 data-size="xs" data-glyphicon="false">
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-default" aria-label="Left Align"  data-toggle="modal" data-target="#myModal">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header modal-color">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Rating:</h4>
+                            </div>
+                            <div class="modal-body">
+                                <h3>{{m.name}}</h3>
+                                <input id="input-3" class="rating" data-show-clear="false" data-show-caption="true" data-size="xs" data-min="0"
+								data-max="10" data-step="1" data-stars="10">
+                                <div class="movie-poster-modal">
+                                    <img src="{{m.poster.url}}" class="img-thumbnail">
+                        <textarea placeholder="Do you have anything to say about this movie?" class="textarea-modal"></textarea>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="modal-footer modal-color">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+
+
+                <!-- Movie Profile -->
+                <div class="movie-profile-cover">
+                    <img class="img-thumbnail" src="{{m.cover.url}}">
+                </div>
+
+                <br>
+
+                <p>
+                	{{m.desc}}
+                </p>
+
+                <h1 class="page-header">
+                    <small>Plot</small>
+                </h1>
+
+                <p>Comming soon</p>
+
+                <hr>
+
+{% endblock %} 
+

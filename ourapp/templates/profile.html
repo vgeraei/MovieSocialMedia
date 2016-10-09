@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+    <link href="{% static "css/profile.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block sidebar %}
+	<div class=" well">
+		<h4>About</h4>
+		<button class="btn btn-default">Edit Profile<span style="padding-left: 10px;" class="glyphicon glyphicon-pencil"></span></button>
+		<div id="about" class="container-fluid">
+			<div id="part">
+				<div id="summary" class="glyphicon glyphicon-user">
+				</div>
+				<div id="summary2">
+					<h5>Full Name</h5>
+					<p>{{p.first_name}} {{p.last_name}}</p>
+				</div>
+			</div>
+			<div id="part">
+				<div id="summary" class="glyphicon glyphicon-envelope">
+				</div>
+				<div id="summary2">
+					<h5>Email</h5>
+					<p>{{p.email}}</p>
+				</div>
+			</div>
+			<div id="part">
+				<div class="summary">
+					<i class="fa fa-birthday-cake"></i>
+				</div>
+				<div id="summary2">
+					<h5>Birthday</h5>
+					<p>{{p.birthday}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Blog Categories Well -->
+	<div class="well">
+		<h4>People you may know</h4>
+		<a href="">
+			<div class="people-know-obj">
+				<img  src="img/people/scarlett.jpg">
+				<h6><b>Scarlett Johansson</b><a href="#" class="btn btn-primary add-button " role="button">Add</a></h6>
+			</div>
+		</a>
+		<a href="">
+			<div class="people-know-obj">
+				<img  src="img/people/jimcarry.jpg">
+				<h6><b>Jim Carry</b> <a href="#" class="btn btn-primary add-button " role="button">Add</a></h6>
+			</div>
+		</a>
+		<a href="">
+			<div class="people-know-obj">
+				<img  src="img/people/zooey.jpg">
+				<h6><b>Zooey Deschanel</b> <a href="#" class="btn btn-primary add-button " role="button">Add</a></h6>
+			</div>
+		</a>
+		<!-- /.row -->
+	</div>
+	<!-- Side Widget Well -->
+	<div class="well">
+		<h4>Movies you might like</h4>
+		<div class="small-poster">
+			<a  href="">
+				<img class="img-responsive img-thumbnail" src="img/walls/vforv.jpg" alt="">
+				<div><b>V for Vendetta</b></div>
+				<a href="#" class="btn btn-primary add-button " role="button">Add</a>
+			</a>
+		</div>
+		<div class="small-poster">
+			<a  href="">
+				<img class="img-responsive img-thumbnail" src="img/walls/django.jpg" alt="">
+				<div><b>Django Unchained</b></div>
+				<a href="#" class="btn btn-primary add-button " role="button">Add</a>
+			</a>
+		</div>
+		<div class="small-poster">
+			<a  href="">
+				<img class="img-responsive img-thumbnail" src="img/walls/sweeney.jpg" alt="">
+				<div><b>Sweeney Todd</b></div>
+				<a href="#" class="btn btn-primary add-button " role="button">Add</a>
+			</a>
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="pics">
+		<img class="img-responsive" src="{{p.cover_pic.url}}" alt="">
+		<div class="mynav">
+			<ul class="nav nav-tabs col-xs-offset-4">
+				<li role="presentation" class="active" id="myTab"><a id="naving" href="profile.html">Posts <var>{{post_num}}</var></a></li>
+				<li role="presentation" id="myTab"><a id="naving" href="followers.html">Followers <var>{{ers_num}}</var></a></li>
+				<li role="presentation" id="myTab"><a id="naving" href="following.html">Following <var>{{ing_num}}</var></a></li>
+			</ul>
+		</div>
+		<div class="pp">
+			<img class="prof" src="{{p.profile_pic.url}}">
+			<div class="prof" id="mn">
+				<h3 id="prof-name">{{p.first_name}} {{p.last_name}}</h3>
+			</div>
+		</div>
+	</div>
+	<div class="post-status form-group">
+		<h3>Post Something</h3>
+		<textarea class="form-control" rows="3" placeholder="Say something about a movie right now!"></textarea>
+		<div class="post-status-settings">
+			<button type="button" class="btn btn-default btn-sm">
+				<span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> Choose a Movie
+			</button>
+			<button type="button" class="btn btn-default btn-sm">
+				<span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Add a Photo
+			</button>
+			<button type="button" class="btn btn-default btn-sm" id="status-post-but">
+				POST
+			</button>
+		</div>
+	</div>
+{% endblock %}
+<script>
+	var comin1 = document.getElementById("c1");
+	var comin2 = document.getElementById("c2");
+	var comin3 = document.getElementById("c3");
+	function post1()
+	{
+		var my_row = document.getElementById("f1");
+		var f = document.getElementById("l1");
+		var inp = document.getElementById("in1").value;
+		var row = document.createElement("div");
+			var para = document.createElement("div");
+			var pic = document.createElement("div");
+				var img = document.createElement("img");
+			row.className = 'row';
+			row.id = 'row1';
+			pic.className = 'col-xs-1';
+			para.className = 'col-xs-10';
+			para.id = 'p1';
+			pic.id = 'box';
+			img.id = 'prof';
+			img.src = 'img/people/zooey.jpg';
+		para.innerHTML = inp;
+		pic.appendChild(img);
+		row.appendChild(pic);
+		row.appendChild(para);
+		my_row.insertBefore(row,my_row.f);
+		my_row.appendChild(f);	
+	}
+	function post2()
+	{
+		var my_row = document.getElementById("f2");
+		var f = document.getElementById("l2");
+		var inp = document.getElementById("in2").value;
+		var row = document.createElement("div");
+			var para = document.createElement("div");
+			var pic = document.createElement("div");
+				var img = document.createElement("img");
+			row.className = 'row';
+			row.id = 'row1';
+			pic.className = 'col-xs-1';
+			para.className = 'col-xs-10';
+			para.id = 'p1';
+			pic.id = 'box';
+			img.id = 'prof';
+			img.src = 'img/people/zooey.jpg';
+		para.innerHTML = inp;
+		pic.appendChild(img);
+		row.appendChild(pic);
+		row.appendChild(para);
+		my_row.insertBefore(row,my_row.f);
+		my_row.appendChild(f);
+	}
+	function post3()
+	{
+		var my_row = document.getElementById("f3");
+		var f = document.getElementById("l3");
+		var inp = document.getElementById("in3").value;
+		var row = document.createElement("div");
+			var para = document.createElement("div");
+			var pic = document.createElement("div");
+				var img = document.createElement("img");
+			row.className = 'row';
+			row.id = 'row1';
+			pic.className = 'col-xs-1';
+			para.className = 'col-xs-10';
+			para.id = 'p1';
+			pic.id = 'box';
+			img.id = 'prof';
+			img.src = 'img/people/zooey.jpg';
+		para.innerHTML = inp;
+		pic.appendChild(img);
+		row.appendChild(pic);
+		row.appendChild(para);
+		my_row.insertBefore(row,my_row.f);
+		my_row.appendChild(f);	
+	}
+	comin1.addEventListener("click",post1);
+	comin2.addEventListener("click",post2);
+	comin3.addEventListener("click",post3);
+</script>
+<script>
+$('#myTab a').click(function (e) {
+  $(this).tab('show')
+})
+</script>

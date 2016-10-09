@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+	<link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}"/>
+	<link rel="stylesheet" href="{% static "css/bootstrap-theme.min.css" %}"/>
+	<link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}"/>
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css' />
+	<link rel="shortcut icon" href="{% static "img/icon.png" %}"/>
+	<link href="{% static "css/blog-home.css" %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static "css/style_first.css" %}"/>
+	<script src="{% static "js/jquery-1.11.2.min.js" %}"></script>
+	<script src="{% static "js/bootstrap.min.js" %}"></script>
+	<script src="{% static "form-validator/jquery.form-validator.js" %}"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Movies Social Network</title>
+</head>
+<body>
+<div class="container" id="container-custom">
+	<nav class="navbar navbar-default navbar-fixed-top" id="navbar-custom">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">
+                    <img id="logo-img" alt="Some" src="{% static "img/Logo.png" %}">
+                </a>
+			</div>
+			<div class="navbar-header">
+			</div>
+			<div class="col-xs-5">
+			</div>
+			<div class="navbar-header">
+				<div class="row">
+					<div class="form-inline">
+						<div id="error1" class="input-group">
+						</div>
+						<div id="error2" class="input-group">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<form action="/login/" method="post" id="sig" class="form-inline">
+						{% csrf_token %}					
+						<div class="input-group">
+							<span class="input-group-addon margin-bottom-xs"><i class="fa fa-user fa-lg"></i></span>
+							<input class="form-control" type="text" placeholder="Username" data-validation="required" 
+							data-validation-error-msg-required="Enter your username!"
+							data-validation-error-msg-container="#error1" name="username"/>	
+						</div>						
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span>
+							<input class="form-control" type="password" placeholder="Password" data-validation="required"
+							data-validation-error-msg-required="Enter your password!"
+							data-validation-error-msg-container="#error2" name="password"/>					
+						</div>
+						<div class="input-group">
+							<label for="captcha">
+								{{form.captcha}}
+							</label>
+						
+						</div>
+						<div class="input-group">
+							<button type="submit" onclick="signin()" class="btn btn-primary"><strong>Sign In</strong></button>
+						</div>
+					</form>
+				</div>
+				<div class="formy row">
+					<form class="form-inline">
+						<div class="input-group">
+							<a href="/forgot/">Forgot your password?</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="body row">
+		<div class="col-xs-1">
+		</div>
+		<div class="col-xs-5">
+			<h3><strong>Sign in or register to our awesome Movies Social Network, MSN!! :D</strong></h3>
+			<img src="{% static "img/sn.jpg" %}" class="img-responsive" alt="Responsive image"/>
+		</div>
+		<div class="col-xs-6">
+			<h3 id="mine"><strong>Registeration Form</strong></h3>
+			<h4 id="mine"><strong>{{thank}}</strong></h4>
+			<h4 id="mine"><strong>{{form.errors}}</strong></h4>
+			<form action="/signup/" method="post" id="reg" enctype="multipart/form-data" class="form-horizontal">
+				{% csrf_token %}
+				<div class="form-group">
+					<label class="col-xs-3 control-label">First Name:</label>
+					<div class="col-xs-6">
+						<input type="text" class="form-control" data-validation="required length alphanumeric" 
+						data-validation-length="min4" data-validation-error-msg-length="The first name must be at least 4 characters long!" 
+						data-validation-error-msg-alphanumeric="Please insert alphanumeric characters!"
+						data-validation-error-msg-required="Please insert your name!" value="" name="first_name"/>
+					</div>
+					<div class="col-xs-3">{{first_name.errors}}</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-3 control-label">Last Name:</label>
+					<div class="col-xs-6">
+						<input type="text" class="form-control" data-validation="required length alphanumeric" 
+						data-validation-length="min4" data-validation-error-msg-length="The first name must be at least 4 characters long!" 
+						data-validation-error-msg-alphanumeric="Please insert alphanumeric characters!"
+						data-validation-error-msg-required="Please insert your name!" value="" name="last_name"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-3 control-label">Username:</label>
+					<div class="col-xs-6">
+						<input type="text" class="form-control" data-validation="required length alphanumeric" 
+						data-validation-length="min4" data-validation-error-msg-length="The username must be at least 4 characters long!" 
+						data-validation-error-msg-alphanumeric="Please insert alphanumeric characters!"
+						data-validation-error-msg-required="Please insert your username!" placeholder="" name="username"/>						
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-3 control-label">Email:</label>
+					<div class="col-xs-6">
+						<input type="text" class="form-control" data-validation="required email" 
+						data-validation-error-msg-email="Please insert a correct email address!" 
+						data-validation-error-msg-required="Please insert your email!" placeholder="example@example.com" name="email"/>						
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-3 control-label">Password:</label>
+					<div class="col-xs-6">
+						<input name="password" type="password" class="form-control" data-validation="required length" data-validation-length="min6" 
+						data-validation-error-msg-length="The password must be at least 6 characters!" 
+						data-validation-error-msg-required="Password is required!" value="" name="password"/>						
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-3 control-label">Confirm password:</label>
+					<div class="col-xs-6">
+						<input type="password" class="form-control" data-validation="confirmation required length" 
+						data-validation-length="min6" data-validation-confirm="password"
+						data-validation-error-msg-length="The password must be at least 6 characters!" 
+						data-validation-error-msg-confirmation="The password did not match!" 
+						data-validation-error-msg-required="Please type password again!" value="" name="confirm_password" />						
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-3 control-label">Gender:</label>
+					<div class="col-xs-6">
+						<label class="radio-inline">
+							<input type="radio" name="inlineRadioOptions" checked="true" value="" name="male" /> Male
+						</label>
+						<label class="radio-inline">
+							  <input type="radio" name="inlineRadioOptions" value="" /> Female
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-3 control-label">Birthday:</label>
+					<div class="col-xs-6">
+						<div class="form-control">
+							{{form.birthday}}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-3 control-label">Profile Picture:</label>
+					<div class="col-xs-6">
+						<div class="form-control">
+							{{form.profile_pic}}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-3 control-label">Cover Picture:</label>
+					<div class="col-xs-6">
+						<div class="form-control">
+							{{form.cover_pic}}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-3 control-label">Captcha:</label>
+					<div class="col-xs-6">
+						<label for="captcha">
+							{{form.captcha}}
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-xs-offset-3 col-xs-9">
+						<button type="submit" onclick="signup()" class="btn btn-success"><strong>Sign Up</strong></button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<p id="copyright"><strong>&copy; Copyright 2015 Sina Sharifi and Vahid Gerayinejad</strong></p>          
+	</div>
+</div>
+</body>
+</html>
+<script>
+	function signin()
+	{
+		$.validate({form: '#sig', modules: 'security, html5'
+		});	
+	}
+	function signup()
+	{
+		$.validate({form: '#reg', modules: 'date, security, html5',  errorMessagePosition : 'top', validateOnBlur: false,
+		});
+	}
+</script>

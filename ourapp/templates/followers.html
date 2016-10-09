@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Movies Social Network</title>
+	<link rel="shortcut icon" href="img/icon.png" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/blog-home.css" rel="stylesheet">
+    <link href="css/followers.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<script src="js/jquery.form-validator.min.js"></script>
+	<script src="js/jquery-1.11.2.min.js"></script>
+</head>
+<body>
+<div class="container" id="container-custom">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" id="navbar-custom">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <!-- Logo -->
+                <a class="navbar-brand" href="#">
+                    <img id="logo-img"  alt="Some" src="img/icons/Logo.png">
+                </a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- <a class="navbar-brand" href="#">Brand</a> -->
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" id="top-left-menu">
+                    <li><a href="index.html" id="custom-home-but"><b>Home</b></a></li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search" id="top-left-menu-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" list="data" placeholder="Search">
+						<datalist id="data">
+							<option>Morgan Freeman</option>
+							<option>Jennifer Lawrence</option>
+							<option>Scarlett Johansson</option>
+							<option>Jim Carrey</option>
+							<option>500 days of summer</option>
+							<option>Fight Club</option>
+							<option>Inception</option>
+							<option>Interstellar</option>
+						</datalist>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav navbar-right" id="nav-right-ul">
+                    <li class="dropdown" >
+                        <a  id="notif-but" href="#" class="dropdown-toggle glyphicon glyphicon-exclamation-sign btn-lg" data-toggle="dropdown" role="button" aria-expanded="false"><span class="badge">3</span></a>
+                        <ul class="dropdown-menu " role="menu">
+                            <li>
+								<a href="#">
+									<div id="mynot">
+										<div id="celling1">
+											<img src="img/friends/jennifer.jpg">
+										</div>	
+										<div id="celling2">								
+											<h5><b>Jennifer Lawrence</b></h5>
+										</div>
+										<div id="celling3">
+											<h6>Likes your post</h6>
+										</div>
+									</div>
+								</a>
+							</li>
+                            <li>
+								<a href="#">
+									<div id="mynot">
+										<div id="celling1">
+											<img src="img/friends/morgan.jpg">
+										</div>	
+										<div id="celling2">								
+											<h5><b>Morgan Freeman</b></h5>
+										</div>
+										<div id="celling3">
+											<h6>Is now following you</h6>
+										</div>
+									</div>
+								</a>
+							</li>
+                            <li>
+								<a href="#">
+									<div id="mynot">
+										<div id="celling1">
+											<img src="img/friends/emma.jpg">
+										</div>	
+										<div id="celling2">								
+											<h5><b>Emma Stone</b></h5>
+										</div>
+										<div id="celling3">
+											<h6>commented on your post</h6>
+										</div>
+									</div>
+								</a>
+							</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a id="settings-but" href="#" class="dropdown-toggle glyphicon glyphicon-wrench btn-lg" data-toggle="dropdown" role="button" aria-expanded="false"><span class="caret"></span></a>
+                        <ul class="dropdown-menu " role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="profile.html" id="profile-but"><b>Profile</b></a></li>
+                    <li>
+                        <a id="signout-but" href="first.html" class=" glyphicon glyphicon-share btn-lg"  role="button" aria-expanded="false"></a>
+                    </li>
+                    <li><!-- Profile Pic-->
+                        <a class="navbar-brand" href="#" >
+                            <img id="profile-img" alt="Some" src="img/profile.png" />
+                        </a>
+                    </li>
+                </ul>
+           </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container-fluid container-custom2">
+        <div class="row">
+			<div class="col-md-3">
+                <!-- Blog Search Well -->
+                <div class=" well">
+                    <h4>Favourite Movies</h4>
+                    <div class="small-poster">
+                        <a  href="">
+                            <img class="img-responsive img-thumbnail" src="img/walls/darkknight.jpg" alt="">
+                            <div><b>Dark Knight</b></div>
+                        </a>
+                    </div>
+                    <div class="small-poster">
+                        <a  href="">
+                            <img class="img-responsive img-thumbnail" src="img/walls/eternal.jpg" alt="">
+                            <div><b>Eternal Sunshine</b></div>
+                        </a>
+                    </div>
+                    <div class="small-poster">
+                        <a  href="">
+                            <img class="img-responsive img-thumbnail" src="img/walls/matrix.jpg" alt="">
+                            <div><b>The Matrix</b></div>
+                        </a>
+                    </div>
+                    <!-- /.input-group -->
+                </div>
+                <!-- Blog Categories Well -->
+                <div class="well">
+                    <h4>People you may know</h4>
+                    <a href="">
+                        <div class="people-know-obj">
+                            <img  src="img/people/scarlett.jpg">
+                            <h6><b>Scarlett Johansson</b>   <a href="#" class="btn btn-primary add-button " role="button">Add</a></h6>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="people-know-obj">
+                            <img  src="img/people/jimcarry.jpg">
+                            <h6><b>Jim Carry</b> <a href="#" class="btn btn-primary add-button " role="button">Add</a></h6>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="people-know-obj">
+                            <img  src="img/people/zooey.jpg">
+                            <h6><b>Zooey Deschanel</b> <a href="#" class="btn btn-primary add-button " role="button">Add</a></h6>
+                        </div>
+                    </a>
+                    <!-- /.row -->
+                </div>
+                <!-- Side Widget Well -->
+                <div class="well">
+                    <h4>Movies you might like</h4>
+                    <div class="small-poster">
+                        <a  href="">
+                            <img class="img-responsive img-thumbnail" src="img/walls/vforv.jpg" alt="">
+                            <div><b>V for Vendetta</b></div>
+                            <a href="#" class="btn btn-primary add-button " role="button">Add</a>
+                        </a>
+                    </div>
+					<div class="small-poster">
+                        <a  href="">
+                            <img class="img-responsive img-thumbnail" src="img/walls/django.jpg" alt="">
+                            <div><b>Django Unchained</b></div>
+                            <a href="#" class="btn btn-primary add-button " role="button">Add</a>
+                        </a>
+                    </div>
+                    <div class="small-poster">
+                        <a  href="">
+                            <img class="img-responsive img-thumbnail" src="img/walls/sweeney.jpg" alt="">
+                            <div><b>Sweeney Todd</b></div>
+                            <a href="#" class="btn btn-primary add-button " role="button">Add</a>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Blog Entries Column -->
+            <div class="col-md-7" id="timeline">
+				<ul class="nav nav-tabs nav-justified">
+					<li role="presentation" class="active" id="myTab"><a href="followers.html">Followers</a></li>
+					<li role="presentation" id="myTab"><a href="following.html">Following</a></li>
+				</ul>
+                <!-- Blog Search Well -->
+				<div class="col-xs-8">
+					<div id="smovie1" class="well">
+						<div id="chat-obj">
+							<div id="cell1">
+								<img src="img/friends/morgan.jpg">
+							</div>	
+							<div id="cell2">								
+								<h4><b>Morgan Freeman</b></h4>
+							</div>
+							<div id="cell3">
+								<button id="follow-me" class="btn btn-default"><i class="fa fa-plus"></i> Follow Me</button>
+							</div>
+						</div>
+						<div id="chat-obj">
+							<div id="cell1">
+								<img src="img/people/scarlett.jpg">
+							</div>	
+							<div id="cell2">								
+								<h4><b>Scarlett Johansson</b></h4>
+							</div>
+							<div id="cell3">
+								<button id="following" data-loading-text="Follow Me" class="btn btn-success">Following <i class="fa fa-check"></i></button>
+							</div>
+						</div>
+						<div id="chat-obj">
+							<div id="cell1">
+								<img src="img/people/jimcarry.jpg">
+							</div>	
+							<div id="cell2">								
+								<h4><b>Jim Carrey</b></h4>
+							</div>
+							<div id="cell3">
+								<button id="follow-me" class="btn btn-default"><i class="fa fa-plus"></i> Follow Me</button>
+							</div>
+						</div>
+						<div id="chat-obj">
+							<div id="cell1">
+								<img src="img/friends/jennifer.jpg">
+							</div>	
+							<div id="cell2">								
+								<h4><b>Jennifer Lawrence</b></h4>
+							</div>
+							<div id="cell3">
+								<button id="following" class="btn btn-success">Following <i class="fa fa-check"></i></button>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+            <div class="col-md-2" >
+                <!-- Blog Chat Well -->
+                <div class="well" id="chat-bar">
+                    <h4>Chat</h4>
+                    <h6>Connect with your friends</h6>
+                    <div class="input-group" id="search-friends">
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </div>
+                    <!-- /.input-group -->
+                    <div class="chat-obj">
+                        <img  src="img/friends/edward.jpg">
+                        <div class="chat-status"> </div>
+                        <h6><b>Edward Norton</b></h6>
+
+                    </div>
+                    <div class="chat-obj">
+                        <img  src="img/friends/jennifer.jpg">
+                        <div class="chat-status"> </div>
+                        <h6><b>Jennifer Lawrence</b></h6>
+                    </div>
+                    <div class="chat-obj">
+                        <img  src="img/friends/dicaprio.jpg">
+                        <div class="chat-status"> </div>
+                        <h6><b>Leonardo Dicaprio</b></h6>
+                    </div>
+                    <div class="chat-obj">
+                        <img  src="img/friends/alpacino.jpg">
+                        <div class="chat-status"> </div>
+                        <h6><b>Al Pacino</b></h6>
+                    </div>
+                    <div class="chat-obj">
+                        <img  src="img/friends/emma.jpg">
+                        <div class="chat-status"> </div>
+                        <h6><b>Emma Stone</b></h6>
+                    </div>
+                    <div class="chat-obj">
+                        <img  src="img/friends/morgan.jpg">
+                        <div class="chat-status"> </div>
+                        <h6><b>Morgan Freeman</b></h6>
+                    </div>
+                    <div class="chat-obj">
+                        <img  src="img/friends/charlize.jpg">
+                        <div class="chat-status"> </div>
+                        <h6><b>Charlize Theron</b></h6>
+                    </div>
+                    <div class="chat-obj">
+                        <img  src="img/friends/robert.jpg">
+                        <div class="chat-status"> </div>
+                        <h6><b>Robert Deniro</b></h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog Sidebar Widgets Column -->
+        </div>
+		<!-- /.row -->
+        <hr>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; MovieHub 2015 by Sina Sharifi & Vahid Geraei nejad</p>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </footer>
+    </div>
+    <!-- /.container -->
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+</div>
+</body>
+</html>
+<script>
+	var comin1 = document.getElementById("c1");
+	var comin2 = document.getElementById("c2");
+	var comin3 = document.getElementById("c3");
+	function post1()
+	{
+		var my_row = document.getElementById("f1");
+		var f = document.getElementById("l1");
+		var inp = document.getElementById("in1").value;
+		var row = document.createElement("div");
+			var para = document.createElement("div");
+			var pic = document.createElement("div");
+				var img = document.createElement("img");
+			row.className = 'row';
+			row.id = 'row1';
+			pic.className = 'col-xs-1';
+			para.className = 'col-xs-10';
+			para.id = 'p1';
+			pic.id = 'box';
+			img.id = 'prof';
+			img.src = 'img/people/zooey.jpg';
+		para.innerHTML = inp;
+		pic.appendChild(img);
+		row.appendChild(pic);
+		row.appendChild(para);
+		my_row.insertBefore(row,my_row.f);
+		my_row.appendChild(f);	
+	}
+	function post2()
+	{
+		var my_row = document.getElementById("f2");
+		var f = document.getElementById("l2");
+		var inp = document.getElementById("in2").value;
+		var row = document.createElement("div");
+			var para = document.createElement("div");
+			var pic = document.createElement("div");
+				var img = document.createElement("img");
+			row.className = 'row';
+			row.id = 'row1';
+			pic.className = 'col-xs-1';
+			para.className = 'col-xs-10';
+			para.id = 'p1';
+			pic.id = 'box';
+			img.id = 'prof';
+			img.src = 'img/people/zooey.jpg';
+		para.innerHTML = inp;
+		pic.appendChild(img);
+		row.appendChild(pic);
+		row.appendChild(para);
+		my_row.insertBefore(row,my_row.f);
+		my_row.appendChild(f);
+	}
+	function post3()
+	{
+		var my_row = document.getElementById("f3");
+		var f = document.getElementById("l3");
+		var inp = document.getElementById("in3").value;
+		var row = document.createElement("div");
+			var para = document.createElement("div");
+			var pic = document.createElement("div");
+				var img = document.createElement("img");
+			row.className = 'row';
+			row.id = 'row1';
+			pic.className = 'col-xs-1';
+			para.className = 'col-xs-10';
+			para.id = 'p1';
+			pic.id = 'box';
+			img.id = 'prof';
+			img.src = 'img/people/zooey.jpg';
+		para.innerHTML = inp;
+		pic.appendChild(img);
+		row.appendChild(pic);
+		row.appendChild(para);
+		my_row.insertBefore(row,my_row.f);
+		my_row.appendChild(f);	
+	}
+	comin1.addEventListener("click",post1);
+	comin2.addEventListener("click",post2);
+	comin3.addEventListener("click",post3);
+</script>
+<script>
+$('#myTab a').click(function (e) {
+  $(this).tab('show')
+})
+</script>

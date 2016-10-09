@@ -1,0 +1,97 @@
+{% extends "timeline.html" %}
+
+{% load static %}
+
+{%block content %}
+<div class="timeline-post" data-toggle="popover" title="{{tpost.movie.name}}" data-placement="top" data-content="Directed by: {{tpost.movie.director}} : {{tpost.movie.rating}}">
+		<div class="post-by-obj-father">
+			<a href="../profile/{{tpost.author.username}}">
+				<div class="post-by-obj">
+					<img  src="{{tpost.author.profile_pic.url}}">
+					<h6><b>{{tpost.author.first_name}} {{tpost.author.last_name}}</b></h6>
+				</div>
+			</a>
+			<p><span class="glyphicon glyphicon-time"></span> Posted on {{tpost.date}}</p>
+		</div>
+		<div class="big-poster">
+			<a  href="../movie/{{tpost.movie.name}}">
+				<img class="img-responsive img-thumbnail" src="{{tpost.movie.cover.url}}" alt="">
+				<div><b>{{tpost.movie.name}}</b></div>
+
+			</a>
+		</div>
+		<div id="mynav" class="timeline-post-setting">
+			<div id="score">
+				<button class="btn btn-default"><i class="fa fa-heart"></i> Like</button>
+			</div>
+			<div id="score1">
+				<h5>Rate</h5>
+			</div>
+			<div id="score1">
+				<h5>{{tpost.movie.rating}}/10</h5>
+			</div>
+			<div id="score">
+				<input id="input-6a" class="rating" data-size="xs-1" data-disabled="true" data-show-caption="false" 
+				data-min="0" data-max="10" data-step="1" data-stars=10 value="{{tpost.movie.rating}}">
+			</div>  
+			<div id="score1">
+				<i class="fa fa-heart"></i>
+			</div>
+			<div id="score">
+				<h5>{{tpost.l_post.count}} likes</h5>
+			</div>
+			<div id="score1">
+				<i class="fa fa-comment"></i>
+			</div>
+			<div id="score">
+				<h5>{{tpost.c_post.count}} comments</h5>
+			</div>
+		</div>
+		<hr>
+		<p>{{tpost.text}}</p>
+		
+
+		<div id="f1">
+			<div id="l1" class="row">
+				<div id="box" class="col-xs-1">
+					<img id="prof" src="{{cur_user.profilepic.url}}" />
+				</div>
+				<div id="box" class="col-xs-9">
+					<input id="in1" type="text" class="form-control"/>
+				</div>
+				<div class="col-xs-2">
+					<button id="c1" class="btn btn-default"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comment</button>
+				</div>
+			</div>
+		</div>
+	</div>  
+{% endblock %}				
+<script>
+	var comin1 = document.getElementById("c1");
+	function post1()
+	{
+		var my_row = document.getElementById("f1");
+		var f = document.getElementById("l1");
+		var inp = document.getElementById("in1").value;
+		var row = document.createElement("div");
+			var para = document.createElement("div");
+			var pic = document.createElement("div");
+				var img = document.createElement("img");
+			row.className = 'row';
+			row.id = 'row1';
+			pic.className = 'col-xs-1';
+			para.className = 'col-xs-10';
+			para.id = 'p1';
+			pic.id = 'box';
+			img.id = 'prof';
+			img.src = 'img/people/zooey.jpg';
+		para.innerHTML = inp;
+		pic.appendChild(img);
+		row.appendChild(pic);
+		row.appendChild(para);
+		my_row.insertBefore(row,my_row.f);
+		my_row.appendChild(f);	
+	}
+	comin1.addEventListener("click",post1);
+</script>
+

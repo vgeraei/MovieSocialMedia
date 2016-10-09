@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+	<link href="{% static "css/index.css" %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block sidebar %}
+
+<div class="well">
+    <h4>Favourite Movies</h4>
+{% for f in fav_movies %}
+    
+    <a href="../movie/{{f.name}}"> 
+    <div class="small-poster"> 
+        <img class="img-responsive img-thumbnail" src="{{f.cover.url}}" alt="">
+        <div><b>{{f.name}}</b></div>
+    </div>
+</a>
+        
+
+{% endfor %}
+</div>
+
+<div class="well">
+    <h4>People you may know</h4>
+    {% for p in sug_people %}
+    <a href="../profile/{{p.username}}">
+        <div class="people-know-obj">
+            <img  src="{{p.profile_pic.url}}">
+            <h6><b>{{p.first_name}} {{p.last_name}}</b>   <a href="#" class="btn btn-primary add-button " role="button">Add</a></h6>
+            </div>
+            </a>
+
+    {% endfor %}
+
+    </div>
+
+
+    <div class="well">
+        <h4>Movies you might like</h4>
+
+
+        {% for m2 in sug_movies %}
+        <div class="small-poster">
+                        <a  href="../movie/{{f.name}}">
+                            <img class="img-responsive img-thumbnail" src="{{m2.cover.url}}" alt="">
+                            <div><b>{{m2.name}}</b></div>
+                            <!-- <a href="#" class="btn btn-primary add-button " role="button">Add</a> -->
+                        </a>
+                    </div>
+
+        {% endfor %}
+</div>
+{% endblock %}
+
+
+{%block content %}
+<div class="post-status form-group">
+                    <h3>Post Something</h3>
+                    <textarea class="form-control" rows="3" placeholder="Say something about a movie right now!"></textarea>
+                    <div class="post-status-settings">
+                        <button type="button" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> Choose a Movie
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Add a Photo
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm post" id="status-post-but">
+                            POST
+                        </button>
+                    </div>
+                </div>
+
+                <h1 class="page-header">
+                    Timeline
+                    <small>...</small>
+                </h1>
+
+
+                {% for tpost in posts %}
+                 <div class="timeline-post" data-toggle="popover" title="{{tpost.movie.name}}" data-placement="top" data-content="Directed by: {{tpost.movie.director}} : {{tpost.movie.rating}}">
+                    <div class="post-by-obj-father">
+                        <a href="../profile/{{tpost.author.username}}">
+                            <div class="post-by-obj">
+                                <img  src="{{tpost.author.profile_pic.url}}">
+                                <h6><b>{{tpost.author.first_name}} {{tpost.author.last_name}}</b></h6>
+                            </div>
+                        </a>
+                        <p><span class="glyphicon glyphicon-time"></span> Posted on {{tpost.date}}</p>
+                    </div>
+                    <div class="big-poster">
+                        <a  href="../movie/{{tpost.movie.name}}">
+                            <img class="img-responsive img-thumbnail" src="{{tpost.movie.cover.url}}" alt="">
+                            <div><b>{{tpost.movie.name}}</b></div>
+
+                        </a>
+                    </div>
+                    <div id="mynav" class="timeline-post-setting">
+                        <div id="score">
+                            <button id="like" class="btn btn-default"><i class="fa fa-heart"></i> Like</button>
+                        </div>
+                        <div id="score1">
+                            <h5>Rate</h5>
+                        </div>
+                        <div id="score1">
+                            <h5>{{tpost.movie.rating}}/10</h5>
+                        </div>
+                        <div id="score">
+                            <input id="input-6a" class="rating" data-size="xs-1" data-disabled="true" data-show-caption="false" 
+							data-min="0" data-max="10" data-step="1" data-stars=10 value="{{tpost.movie.rating}}">
+                        </div>  
+                        <div id="score1">
+                            <i class="fa fa-heart"></i>
+                        </div>
+                        <div id="score">
+                            <h5>{{tpost.l_post.count}} likes</h5>
+                        </div>
+                        <div id="score1">
+                            <i class="fa fa-comment"></i>
+                        </div>
+                        <div id="score">
+                            <h5>{{tpost.c_post.count}} comments</h5>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>{{tpost.text}}</p>
+                    <div id="read" class="row">
+                        <a class="btn btn-primary" href="/timeline/{{tpost.id}}/">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                    </div>
+
+                    <div id="f1">
+                        <div id="l1" class="row">
+                            <div id="box" class="col-xs-1">
+                                <img id="prof" src="{{cur_user.profilepic.url}}" />
+                            </div>
+                            <div id="box" class="col-xs-9">
+                                <input id="in1" type="text" class="form-control"/>
+                            </div>
+                            <div class="col-xs-2">
+                                <button id="c1" class="btn btn-default"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>          
+                {% endfor %}
+{% endblock %}
+<script type="text/javascript">
+	$("#like").on("click",function(e){
+	$.ajax({
+	type: "POST",
+	url: "/like/{{tpost.id}}",
+	datatype: "json",
+	data:{
+	user: "{{ user.username }}",
+	csrfmiddlewaretoken: "{{ csrf_token }}"
+	},
+	success: function(json){
+	{# alert(json.toString);#}
+	error: function(json,errmsg,err){
+	alert("salam");
+	}
+	});
+	return false;
+	});
+	$("#post").on("click",function(e){
+	$.ajax({
+	type: "POST",
+	url: "/post/{{m2.name}}",
+	datatype: "json",
+	data:{
+	user: "{{ user.username }}",
+	csrfmiddlewaretoken: "{{ csrf_token }}"
+	},
+	success: function(json){
+	{# alert(json.toString);#}
+	error: function(json,errmsg,err){
+	alert("salam");
+	}
+	});
+	return false;
+	});
+</script>

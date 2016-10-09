@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+	{% block head %}{% endblock %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Movies Social Network</title>
+	<link rel="shortcut icon" href="{% static "img/icon.png" %}"/>
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/blog-home.css" %}" rel="stylesheet">
+    <link href="{% static "css/index.css" %}" rel="stylesheet">
+	<link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+	<script src="{% static "js/jquery-1.11.2.min.js" %}"></script>
+	<script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+	<link rel="stylesheet" href="{% static "css/star-rating.css" %}" media="all" rel="stylesheet" type="text/css"/>
+	<script src="{% static "js/star-rating.min.js" %}" type="text/javascript"></script>
+</head>
+<body>
+<div class="container" id="container-custom">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" id="navbar-custom">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <!-- Logo -->
+                <a class="navbar-brand" href="#">
+                    <img id="logo-img"  alt="Some" src="{% static "img/icons/Logo.png" %}">
+                </a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- <a class="navbar-brand" href="#">Brand</a> -->
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" id="top-left-menu">
+                    <li><a href="/timeline/" id="custom-home-but"><b>Home</b></a></li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search" id="top-left-menu-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" list="data" placeholder="Search">
+						<datalist id="data">
+							<option>Morgan Freeman</option>
+							<option>Jennifer Lawrence</option>
+							<option>Scarlett Johansson</option>
+							<option>Jim Carrey</option>
+							<option>500 days of summer</option>
+							<option>Fight Club</option>
+							<option>Inception</option>
+							<option>Interstellar</option>
+						</datalist>
+                        <span class="input-group-btn">
+                            <button onclick="window.open('search.html')" class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav navbar-right" id="nav-right-ul">
+                    <li class="dropdown" >
+                        <a  id="notif-but" href="#" class="dropdown-toggle glyphicon glyphicon-exclamation-sign btn-lg" data-toggle="dropdown" role="button" aria-expanded="false"><span class="badge">3</span></a>
+                        <ul class="dropdown-menu " role="menu">
+                            <li>
+								<a href="#">
+									<div id="mynot">
+										<div id="celling1">
+											<img src="{% static "img/friends/jennifer.jpg" %}">
+										</div>	
+										<div id="celling2">								
+											<h5><b>Jennifer Lawrence</b></h5>
+										</div>
+										<div id="celling3">
+											<h6>Likes your post</h6>
+										</div>
+									</div>
+								</a>
+							</li>
+                            <li>
+								<a href="#">
+									<div id="mynot">
+										<div id="celling1">
+											<img src="{% static "img/friends/morgan.jpg" %}">
+										</div>	
+										<div id="celling2">								
+											<h5><b>Morgan Freeman</b></h5>
+										</div>
+										<div id="celling3">
+											<h6>Is now following you</h6>
+										</div>
+									</div>
+								</a>
+							</li>
+                            <li>
+								<a href="#">
+									<div id="mynot">
+										<div id="celling1">
+											<img src="{% static "img/friends/emma.jpg" %}">
+										</div>	
+										<div id="celling2">								
+											<h5><b>Emma Stone</b></h5>
+										</div>
+										<div id="celling3">
+											<h6>commented on your post</h6>
+										</div>
+									</div>
+								</a>
+							</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a id="settings-but" class="dropdown-toggle glyphicon glyphicon-wrench btn-lg" data-toggle="dropdown" role="button" aria-expanded="false"></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/profile/{{p.username}}/change/">Change Password</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/profile/{{p.username}}/" id="profile-but"><b>Profile</b></a></li>
+                    <li>
+                        <a id="signout-but" href="/logout/" class=" glyphicon glyphicon-share btn-lg"  role="button" aria-expanded="false"></a>
+                    </li>
+                    <li><!-- Profile Pic-->
+                        <a class="navbar-brand">
+                            <img id="profile-img" alt="Some" src="{% static "img/profile.png" %}"/>
+                        </a>
+                    </li>
+                </ul>
+           </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container-fluid container-custom2">
+        <div class="row">
+			<div class="col-md-3">
+                <!-- Blog Search Well -->
+				{% block sidebar %}{% endblock %}
+            </div>
+            <!-- Blog Entries Column -->
+            <div class="col-md-7" id="timeline">
+				
+				{% block content %}{% endblock %}
+
+            </div>                         
+            <div id="wanted" class="col-md-2" >
+                <!-- Blog Chat Well -->
+                <div class="well" id="chat-bar">
+                    <h4>Chat</h4>
+                    <h6>Connect with your friends</h6>
+                    <div class="input-group" id="search-friends">
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </div>
+                    <!-- /.input-group -->
+                    <div class="chat-obj">
+                        <img  src="{% static "img/friends/edward.jpg" %}">
+                        <div class="chat-status"> </div>
+                        <h6 class="chaters">Edward Norton</h6>
+
+                    </div>
+                    <div class="chat-obj">
+                        <img  src="{% static "img/friends/jennifer.jpg" %}">
+                        <div class="chat-status"> </div>
+                        <h6 class="chaters">Jennifer Lawrence</h6>
+                    </div>
+                    <div class="chat-obj">
+                        <img  src="{% static "img/friends/dicaprio.jpg" %}">
+                        <div class="chat-status"> </div>
+                        <h6 class="chaters">Leonardo Dicaprio</h6>
+                    </div>
+                    <div class="chat-obj">
+                        <img  src="{% static "img/friends/alpacino.jpg" %}">
+                        <div class="chat-status"> </div>
+						<h6 class="chaters">Al Pacino</h6>                      
+                    </div>
+                    <div class="chat-obj">
+                        <img  src="{% static "img/friends/emma.jpg" %}">
+                        <div class="chat-status"> </div>
+                        <h6 class="chaters">Emma Stone</h6>
+                    </div>
+                    <div class="chat-obj">
+                        <img  src="{% static "img/friends/morgan.jpg" %}">
+                        <div class="chat-status"> </div>
+                        <h6 class="chaters">Morgan Freeman</h6>
+                    </div>
+                    <div class="chat-obj">
+                        <img  src="{% static "img/friends/charlize.jpg" %}">
+                        <div class="chat-status"> </div>
+                        <h6 class="chaters">Charlize Theron</h6>
+                    </div>
+                    <div class="chat-obj">
+                        <img  src="{% static "img/friends/robert.jpg" %}">
+                        <div class="chat-status"> </div>
+                        <h6 class="chaters">Robert Deniro</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog Sidebar Widgets Column -->
+        </div>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; MovieHub 2015 by Sina Sharifi & Vahid Geraei nejad</p>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </footer>
+    </div>
+    <!-- /.container -->
+    <!-- jQuery -->
+</div>
+</body>
+</html>
+<script>
+	var comin1 = document.getElementById("c1");
+	var comin2 = document.getElementById("c2");
+	var comin3 = document.getElementById("c3");
+	function post1()
+	{
+		var my_row = document.getElementById("f1");
+		var f = document.getElementById("l1");
+		var inp = document.getElementById("in1").value;
+		var row = document.createElement("div");
+			var para = document.createElement("div");
+			var pic = document.createElement("div");
+				var img = document.createElement("img");
+			row.className = 'row';
+			row.id = 'row1';
+			pic.className = 'col-xs-1';
+			para.className = 'col-xs-10';
+			para.id = 'p1';
+			pic.id = 'box';
+			img.id = 'prof';
+			img.src = 'img/people/zooey.jpg';
+		para.innerHTML = inp;
+		pic.appendChild(img);
+		row.appendChild(pic);
+		row.appendChild(para);
+		my_row.insertBefore(row,my_row.f);
+		my_row.appendChild(f);
+		document.getElementById("in1").value = "";
+	}
+	function post2()
+	{
+		var my_row = document.getElementById("f2");
+		var f = document.getElementById("l2");
+		var inp = document.getElementById("in2").value;
+		var row = document.createElement("div");
+			var para = document.createElement("div");
+			var pic = document.createElement("div");
+				var img = document.createElement("img");
+			row.className = 'row';
+			row.id = 'row1';
+			pic.className = 'col-xs-1';
+			para.className = 'col-xs-10';
+			para.id = 'p1';
+			pic.id = 'box';
+			img.id = 'prof';
+			img.src = 'img/people/scarlett.jpg';
+		para.innerHTML = inp;
+		pic.appendChild(img);
+		row.appendChild(pic);
+		row.appendChild(para);
+		my_row.insertBefore(row,my_row.f);
+		my_row.appendChild(f);
+		document.getElementById("in2").value = "";
+	}
+	function post3()
+	{
+		var my_row = document.getElementById("f3");
+		var f = document.getElementById("l3");
+		var inp = document.getElementById("in3").value;
+		var row = document.createElement("div");
+			var para = document.createElement("div");
+			var pic = document.createElement("div");
+				var img = document.createElement("img");
+			row.className = 'row';
+			row.id = 'row1';
+			pic.className = 'col-xs-1';
+			para.className = 'col-xs-10';
+			para.id = 'p1';
+			pic.id = 'box';
+			img.id = 'prof';
+			img.src = 'img/people/jimcarry.jpg';
+		para.innerHTML = inp;
+		pic.appendChild(img);
+		row.appendChild(pic);
+		row.appendChild(para);
+		my_row.insertBefore(row,my_row.f);
+		my_row.appendChild(f);	
+		document.getElementById("in3").value = "";
+	}
+	comin1.addEventListener("click",post1);
+	comin2.addEventListener("click",post2);
+	comin3.addEventListener("click",post3);
+</script>
+<script>
+	var count = 0;
+	var wanted = document.getElementById("wanted");
+	var last = document.getElementById("chat-bar");
+	var kliks = document.getElementsByClassName("chat-obj")[0];
+	var names = document.getElementsByClassName("chaters")[0].innerHTML;
+		var w = document.createElement("div");
+			w.id = 'chat-window';
+			//widnow parts
+			//header
+			var h = document.createElement("div");
+			h.id = 'chat-head';
+			//icon	
+				var h1 = document.createElement("div");
+				h1.id = 'chat-icon';
+					var com = document.createElement("i");
+					com.className = 'fa fa-comment fa-lg';
+					com.id = 'com';
+				h1.appendChild(com);
+			//name
+				var h2 = document.createElement("div");
+				h2.id = 'chat-name';
+					var n = document.createElement("h5");
+					n.innerHTML = names;
+				h2.appendChild(n);
+			//close
+				var h3 = document.createElement("div");
+				h3.id = 'chat-icon';
+					var clo = document.createElement("i");
+					clo.className = 'fa fa-times fa-lg';
+					clo.id = 'com';
+				h3.appendChild(clo);
+			h.appendChild(h1);
+			h.appendChild(h2);
+			h.appendChild(h3);
+		//body
+			var b = document.createElement("div");
+			b.id = 'chat-body';
+		//footer
+			var l = document.createElement("div");
+			l.id = 'chat-foot';
+				var inp = document.createElement("input");
+				inp.className = 'form-control';
+				inp.id = 'chat-inp';
+			l.appendChild(inp);
+	function draw()
+	{	
+		w.appendChild(h);
+		w.appendChild(b);
+		w.appendChild(l);
+		wanted.insertBefore(w,wanted.last);
+		wanted.appendChild(last);
+		count++;
+		alert($(this).children("h6").text());
+	}
+	function close()
+	{
+		wanted.removeChild(w);
+		count--;
+	}
+	$('.chat-obj').on("click", draw);
+	
+	//kliks.addEventListener("click",draw);
+	clo.addEventListener("click",close);
+</script>
+<script>
+	$(function(){
+		$('[data-toggle="popover"]').popover({trigger: "hover"})
+		});
+</script>
